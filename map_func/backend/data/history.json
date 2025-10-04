@@ -1,0 +1,11 @@
+{
+  "visited": [
+    {"name": "Kiyosumi Gardens", "lat": 35.680451964839015, "lon": 139.79568806115563},
+    {"name": "Mister Dornut, Monzennakacho", "lat": 35.672690694279204, "lon": 139.7946496221495},
+    {"name": "Coffee speciality store toa", "lat": 35.672711817510006, "lon": 139.79482266921974}
+  ],
+  "favorites": [
+    {"name": "Blue Bottle Coffee Kiyosumi Shirakawa", "lat": 35.677835191926306, "lon": 139.80060070437196},
+    {"name": "MONNAKA COFFEE", "lat": 35.67262391602691, "lon": 139.79559380544973}
+  ]
+}

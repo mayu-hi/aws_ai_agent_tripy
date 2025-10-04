@@ -1,0 +1,18 @@
+html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; }
+#app { display: grid; grid-template-rows: 56px 1fr; height: 100%; }
+.header { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid #eee; }
+.header h1 { font-size: 16px; margin: 0; }
+.controls { display: flex; gap: 8px; align-items: center; }
+#map { width: 100%; height: 100%; }
+.badge { padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.badge.visited { background: #e6f0ff; color: #174ea6; }
+.badge.favorite { background: #fff3cd; color: #a07900; }
+.badge.recommended { background: #ffe5e5; color: #b00020; }
+.marker { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.1); }
+.marker.visited { background: #1a73e8; }
+.marker.favorite { background: #fbbc04; }
+.marker.recommended { background: #ea4335; }
+.marker.me { background: #34a853; width: 16px; height: 16px; }
+.search-box { padding: 6px 8px; border: 1px solid #ddd; border-radius: 8px; min-width: 240px; }
+.btn { padding: 6px 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; cursor: pointer; }
+.btn:active { transform: translateY(1px); }
