@@ -1,0 +1,137 @@
+service: tripy-backend
+
+custom:
+  tripsTable: trips-table-${sls:stage}
+  bookingsTable: bookings-table-${sls:stage}
+  todosTable: todos-table-${sls:stage}
+
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-west-2
+  tags:
+    Owner: AI-Hackathon
+    Team: 01_Athena
+  environment:
+    TRIPS_TABLE: trips-table-dev
+    BOOKINGS_TABLE: bookings-table-dev
+    TODOS_TABLE: todos-table-dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - bedrock:InvokeModel
+      Resource: "*"
+
+functions:
+  trips:
+    handler: src/handlers/trips.handler
+    events:
+      - http:
+          path: /trips
+          method: any
+          cors: true
+      - http:
+          path: /trips/{proxy+}
+          method: any
+          cors: true
+  
+  bookings:
+    handler: src/handlers/bookings.handler
+    events:
+      - http:
+          path: /bookings
+          method: any
+          cors: true
+      - http:
+          path: /bookings/{proxy+}
+          method: any
+          cors: true
+  
+  todos:
+    handler: src/handlers/todos.handler
+    events:
+      - http:
+          path: /todos
+          method: any
+          cors: true
+      - http:
+          path: /todos/{proxy+}
+          method: any
+          cors: true
+
+resources:
+  Resources:
+    TripsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TRIPS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: tripId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: tripId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+    
+    BookingsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.BOOKINGS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: bookingId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: bookingId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+    
+    TodosTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TODOS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: todoId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: todoId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: tripy-user-pool
+        UsernameAttributes:
+          - email
+        AutoVerifiedAttributes:
+          - email
+    
+    CognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: tripy-client
+        UserPoolId: !Ref CognitoUserPool
+        GenerateSecret: false
+
+plugins:
+  - serverless-webpack
+  #- serverless-offline
