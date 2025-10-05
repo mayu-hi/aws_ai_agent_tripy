@@ -3,16 +3,30 @@ html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Seg
 .header { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid #eee; }
 .header h1 { font-size: 16px; margin: 0; }
 .controls { display: flex; gap: 8px; align-items: center; }
-#map { width: 100%; height: 100%; }
+#map { width: 100%; height: 100%; position: relative; }
 .badge { padding: 4px 8px; border-radius: 999px; font-size: 12px; }
 .badge.visited { background: #e6f0ff; color: #174ea6; }
 .badge.favorite { background: #fff3cd; color: #a07900; }
 .badge.recommended { background: #ffe5e5; color: #b00020; }
-.marker { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.1); }
-.marker.visited { background: #1a73e8; }
-.marker.favorite { background: #fbbc04; }
-.marker.recommended { background: #ea4335; }
-.marker.me { background: #34a853; width: 16px; height: 16px; }
-.search-box { padding: 6px 8px; border: 1px solid #ddd; border-radius: 8px; min-width: 240px; }
+
+/* ディテール用のスライドパネル */
+.panel { position: absolute; right: 16px; top: 72px; width: 400px; max-height: calc(100% - 96px); overflow: auto; background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.08); padding: 12px; }
+.hidden { display: none; }
+.panel h3 { margin: 6px 0 8px; font-size: 16px; }
+.panel .meta { font-size: 12px; color: #666; margin-bottom: 8px; }
+.result { display: grid; grid-template-columns: 84px 1fr; gap: 10px; padding: 8px; border: 1px solid #f0f0f0; border-radius: 8px; margin-bottom: 8px; }
+.result img { width: 84px; height: 84px; object-fit: cover; border-radius: 6px; background: #fafafa; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
 .btn { padding: 6px 10px; border: 1px solid #ddd; border-radius: 8px; background: #fff; cursor: pointer; }
 .btn:active { transform: translateY(1px); }
+
+/* ホバーポップアップの文字を大きめに */
+.popup-title { font-size: 14px; font-weight: 700; }
+.popup-note { font-size: 13px; color: #555; margin-top: 4px; }
+
+/* レビュー表示 */
+.stars { line-height: 1; }
+.stars .star { display: inline-block; font-size: 16px; }
+.badge-provider { font-size: 11px; color: #999; margin-top: 8px; }
+.hours { font-size: 12px; color: #444; margin: 6px 0 0; }
+.phone { font-size: 12px; color: #444; margin-top: 4px; }

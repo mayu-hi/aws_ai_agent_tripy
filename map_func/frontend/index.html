@@ -22,6 +22,7 @@
       </div>
     </div>
     <div id="map"></div>
+    <div id="panel" class="panel hidden"><div id="panel-content"></div></div>
   </div>
 
   <script>
@@ -29,51 +30,42 @@
       const cfg = window.APP_CONFIG;
       const { region, apiKey, styleName, apiBase, language } = cfg;
 
-      // 地図スタイル（APIキー方式）
-      const styleUrl = `https://maps.geo.${region}.amazonaws.com/v2/styles/${encodeURIComponent(styleName)}/descriptor?key=${encodeURIComponent(apiKey)}`;
-
-      const map = new maplibregl.Map({
-        container: 'map',
-        style: styleUrl,
-        center: [139.767, 35.681], // 東京駅付近
-        zoom: 12
-      });
-
-      map.addControl(new maplibregl.NavigationControl(), 'top-right');
-
-      // === ピン色の統一ロジック（カテゴリの揺れを吸収） ===
-      const PIN_COLORS = {
-        visited: '#1a73e8',
-        favorite: '#fbbc04', fav: '#fbbc04', favourite: '#fbbc04',
-        recommended: '#ea4335', recommend: '#ea4335', suggestion: '#ea4335',
-        me: '#34a853', current: '#34a853', here: '#34a853'
-      };
-      function normalizeCategory(v) {
-        if (!v) return 'visited';
-        const k = String(v).trim().toLowerCase();
-        if (PIN_COLORS[k]) return k;
-        // よくある別名を吸収
-        if (k.startsWith('fav')) return 'favorite';
-        if (k.startsWith('rec')) return 'recommended';
-        return 'recommended';
+      // ====== 定数・ヘルパ ======
+      const PIN_COLORS = { visited: '#1a73e8', favorite: '#fbbc04', recommended: '#ea4335', me: '#34a853', custom: '#6b4eff' };
+      function normalizeCategory(cat) { return (cat || 'visited').toLowerCase(); }
+      function renderStars(rating) {
+        if (!rating) return '';
+        const full = Math.floor(rating);
+        const half = rating - full >= 0.5;
+        let html = '<span class="stars" aria-label="rating">';
+        for (let i=0;i<full;i++) html += '<span class="star">★</span>';
+        if (half) html += '<span class="star">☆</span>';
+        return html + ` <span style="font-size:12px;color:#666;">${rating.toFixed(1)}</span></span>`;
       }
 
-      // 現在地マーカー（デフォルトのピン + color/scale で全面着色）
-      const meMarker = new maplibregl.Marker({ color: PIN_COLORS.me, scale: 1.2 });
+      const styleUrl = `https://maps.geo.${region}.amazonaws.com/v2/styles/${encodeURIComponent(styleName)}/descriptor?key=${encodeURIComponent(apiKey)}`;
+      const routesEndpoint = `https://routes.geo.${region}.amazonaws.com/v2/routes?key=${encodeURIComponent(apiKey)}`;
 
+      const map = new maplibregl.Map({ container: 'map', style: styleUrl, center: [139.767, 35.681], zoom: 12 });
+      map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+      // 現在地
+      let meMarkerLngLat = null;
+      const meMarker = new maplibregl.Marker({ color: PIN_COLORS.me, scale: 1.2 });
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
           const { latitude, longitude } = pos.coords;
-          meMarker.setLngLat([longitude, latitude]).addTo(map);
-          const meHtml = `<strong>現在地</strong><div style="margin-top:4px;font-size:12px;color:#666">${longitude.toFixed(5)}, ${latitude.toFixed(5)}</div>`;
-          attachHoverPopup(meMarker, meHtml); // ← ホバーでポップアップ
-          map.flyTo({ center: [longitude, latitude], zoom: 14 });
+          meMarkerLngLat = [longitude, latitude];
+          meMarker.setLngLat(meMarkerLngLat).addTo(map);
+          const html = `<div class="popup-title">現在地</div>`;
+          attachHoverPopup(meMarker, html);
+          map.flyTo({ center: meMarkerLngLat, zoom: 14 });
         });
       }
 
-      // 共通：ピン追加（デフォルトマーカーを使用して全面を色付け）（カテゴリに応じて inline style で色を強制）
+      // ピン管理
+      const markers = [];
       function attachHoverPopup(marker, html) {
-        // クリック不要、ホバーで出る軽量ポップアップ
         const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 24 }).setHTML(html);
         marker.setPopup(popup);
         const el = marker.getElement();
@@ -89,84 +81,200 @@
         const marker = new maplibregl.Marker({ color: PIN_COLORS[cat] || '#666', scale: 1.0 })
           .setLngLat([place.lon, place.lat])
           .addTo(map);
-        const desc = place.note ? `<div style=\"margin-top:4px;font-size:12px;color:#666\">${place.note}</div>` : '';
-        const meta = (place.lon && place.lat) ? `<div style=\"margin-top:4px;font-size:11px;color:#999\">${place.lon.toFixed(5)}, ${place.lat.toFixed(5)}</div>` : '';
+        markers.push({ marker, place });
+
         const title = place.name || cat;
-        const html = `<strong>${title}</strong>${desc}${meta}`;
-        attachHoverPopup(marker, html); // ← ホバーでポップアップ
+        const desc = place.note ? `<div class=\"popup-note\">${place.note}</div>` : '';
+        const html = `<div class=\"popup-title\">${title}</div>${desc}`; // 座標は出さない
+        attachHoverPopup(marker, html);
+
+        // クリックで詳細パネル
+        marker.getElement().addEventListener('click', (e) => {
+          e.stopPropagation();
+          showDetailPanel({ name: title, lat: place.lat, lon: place.lon, note: place.note, category: cat });
+        });
       }
 
-      // 履歴（visited/favorite）をロードして色分けピン表示
+      // 初期ロード
+      await loadHistory();
+      await loadRecommendations();
+
       async function loadHistory() {
         const res = await fetch(`${apiBase}/api/history`);
         const data = await res.json();
         data.forEach(p => addPin(p));
       }
-
-      // おすすめを取得してピン表示
       async function loadRecommendations() {
         const res = await fetch(`${apiBase}/api/recommendations`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_id: 'default' }) });
         const data = await res.json();
         data.forEach(p => addPin(p));
       }
 
-      // === Places v2（APIキー）で検索 ===
+      // ===== 検索（Places v2: APIキー）
       async function doSearch() {
         const q = document.getElementById('search').value.trim();
         if (!q) return;
-
-        // 現在地を検索バイアスに
         let lat, lon;
-        try {
-          const loc = meMarker.getLngLat();
-          lon = loc.lng; lat = loc.lat;
-        } catch (e) {}
+        if (meMarkerLngLat) { [lon, lat] = meMarkerLngLat; }
 
         const url = `https://places.geo.${region}.amazonaws.com/v2/search-text?key=${encodeURIComponent(apiKey)}`;
-        const body = {
-          QueryText: q,
-          MaxResults: 10,
-          Language: language || 'ja',
-          IntendedUse: 'SingleUse',
-          ...(lat && lon ? { BiasPosition: [lon, lat] } : {})
-        };
+        const body = { QueryText: q, MaxResults: 10, Language: language || 'ja', IntendedUse: 'SingleUse', ...(lat && lon ? { BiasPosition: [lon, lat] } : {}) };
 
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-
-        if (!res.ok) {
-          const txt = await res.text();
-          console.error('Places API error', res.status, txt);
-          alert('検索に失敗しました');
-          return;
-        }
-
+        const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        if (!res.ok) { console.error('Places error', await res.text()); alert('検索に失敗しました'); return; }
         const data = await res.json();
         const items = data.ResultItems || [];
-
         items.forEach(item => {
           const pos = item.Position || (item.AccessPoints && item.AccessPoints[0] && item.AccessPoints[0].Position);
-          if (!pos) return;
-          const [plon, plat] = pos;
-          const name = (item.Address && item.Address.Label) || (item.Categories && item.Categories[0] && item.Categories[0].Name) || q;
-          addPin({ name, lat: plat, lon: plon, category: 'recommended' });
+          if (!pos) return; const [plon, plat] = pos;
+          const label = (item.Address && item.Address.Label) || (item.Categories && item.Categories[0] && item.Categories[0].Name) || q;
+          addPin({ name: label, lat: plat, lon: plon, category: 'recommended' });
         });
-
-        if (items[0]) {
-          const pos = items[0].Position || (items[0].AccessPoints && items[0].AccessPoints[0] && items[0].AccessPoints[0].Position);
-          if (pos) map.flyTo({ center: [pos[0], pos[1]], zoom: 14 });
-        }
+        if (items[0]) { const p = items[0].Position || (items[0].AccessPoints && items[0].AccessPoints[0] && items[0].AccessPoints[0].Position); if (p) map.flyTo({ center: [p[0], p[1]], zoom: 14 }); }
       }
-
       document.getElementById('btnSearch').addEventListener('click', doSearch);
       document.getElementById('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
 
-      // 初期ロード
-      await loadHistory();
-      await loadRecommendations();
+      // ===== クリック（ピン以外の場所でも）で詳細パネル表示
+      map.on('click', async (e) => {
+        const { lng, lat } = e.lngLat;
+        showDetailPanel({ name: 'この周辺', lon: lng, lat: lat, category: 'custom' });
+      });
+
+      // ====== 詳細パネル ======
+      const panel = document.getElementById('panel');
+      const panelContent = document.getElementById('panel-content');
+
+      async function showDetailPanel(target) {
+        // Web検索（バックエンドのメタサーチ）
+        const q = target.name || `${target.lat},${target.lon}`;
+        const res = await fetch(`${apiBase}/api/meta_search`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q, lat: target.lat, lon: target.lon, max_results: 6 }) });
+        const data = await res.json();
+        const results = data.results || [];
+        const provider = data.provider || '';
+
+        const actionsHtml = `
+          <div class="actions">
+            <button class="btn" id="btnRoute">ルート検索</button>
+            <button class="btn" id="btnAddPin">ピンを追加</button>
+            <button class="btn" id="btnRemovePin">ピンを削除</button>
+            <button class="btn" id="btnClose">閉じる</button>
+          </div>`;
+
+        const listHtml = results.map(r => {
+          const rev = r.review || {};
+          const stars = renderStars(rev.rating);
+          const count = rev.count ? `<span style=\"font-size:12px;color:#666;\">（${rev.count}）</span>` : '';
+          const open = (rev.open_now === true) ? '<span style="color:#0a7c2f;">営業中</span>' : (rev.open_now === false ? '<span style="color:#b00020;">営業時間外</span>' : '');
+          const hours = Array.isArray(rev.weekday_text) ? `<details class=\"hours\"><summary>営業時間</summary>${rev.weekday_text.map(h=>`<div>${h}</div>`).join('')}</details>` : '';
+          const phone = rev.phone ? `<div class=\"phone\">TEL: ${rev.phone}</div>` : '';
+          return `
+            <a class="result" href="${r.url || '#'}" target="_blank" rel="noopener noreferrer">
+              ${r.image ? `<img src="${r.image}" alt="img"/>` : `<div></div>`}
+              <div>
+                <div style="font-weight:700;">${r.title || ''}</div>
+                <div class="meta">${r.snippet || ''}</div>
+                <div>${stars} ${count} ${open}</div>
+                ${hours}
+                ${phone}
+              </div>
+            </a>`;
+        }).join('');
+
+        const providerBadge = provider ? `<div class="badge-provider">データ提供: ${provider === 'google_places' ? 'Google Places' : (provider === 'serpapi' ? 'SerpAPI (Google Maps)' : 'Dummy')}</div>` : '';
+
+        panelContent.innerHTML = `
+          <h3>${target.name || ''}</h3>
+          <div class="meta">カテゴリ: ${target.category || ''}</div>
+          ${actionsHtml}
+          ${listHtml || '<div class="meta">検索結果がありません（APIキー未設定の場合はダミー表示）。</div>'}
+          ${providerBadge}
+        `;
+        panel.classList.remove('hidden');
+
+        document.getElementById('btnClose').onclick = () => panel.classList.add('hidden');
+        document.getElementById('btnRoute').onclick = () => routeTo(target);
+        document.getElementById('btnAddPin').onclick = () => addUserPin(target);
+        document.getElementById('btnRemovePin').onclick = () => removeUserPin(target);
+      }
+
+      // ===== ルート（APIキーで Routes v2 を直接呼ぶ） =====
+      let routeSourceId = 'route-source';
+      let routeLayerId = 'route-layer';
+      async function routeTo(target) {
+        if (!meMarkerLngLat) { alert('現在地が取得できません'); return; }
+        try {
+          const body = {
+            Origin: meMarkerLngLat,
+            Destination: [target.lon, target.lat],
+            TravelMode: 'Car',
+            LegGeometryFormat: 'Simple'
+          };
+          const res = await fetch(routesEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+          if (!res.ok) { const t = await res.text(); throw new Error(`Routes API error ${res.status}: ${t}`); }
+          const json = await res.json();
+          const line = extractRouteLineString(json);
+          drawRouteOnMap(map, line);
+        } catch (err) {
+          console.error(err); alert('ルート検索に失敗しました。APIキーにRoutesの許可があるか確認してください。');
+        }
+      }
+
+      function extractRouteLineString(resp) {
+        const route = resp?.Routes?.[0];
+        if (!route) return [];
+        const coords = [];
+        for (const leg of route.Legs || []) {
+          const ls = leg?.Geometry?.LineString
+            || leg?.VehicleLegDetails?.Geometry?.LineString
+            || leg?.PedestrianLegDetails?.Geometry?.LineString;
+          if (Array.isArray(ls)) { coords.push(...ls); continue; }
+          const steps = leg?.VehicleLegDetails?.TravelSteps || leg?.PedestrianLegDetails?.TravelSteps || leg?.TravelSteps;
+          if (Array.isArray(steps)) {
+            for (const step of steps) {
+              if (Array.isArray(step?.Geometry?.LineString)) coords.push(...step.Geometry.LineString);
+            }
+          }
+        }
+        return coords;
+      }
+
+      function drawRouteOnMap(map, lineCoords) {
+        if (!map || !Array.isArray(lineCoords) || !lineCoords.length) return;
+        const data = { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'LineString', coordinates: lineCoords }, properties: {} }] };
+        if (map.getSource(routeSourceId)) {
+          map.getSource(routeSourceId).setData(data);
+        } else {
+          map.addSource(routeSourceId, { type: 'geojson', data });
+          map.addLayer({ id: routeLayerId, type: 'line', source: routeSourceId, paint: { 'line-width': 5, 'line-color': '#2c7be5' } });
+        }
+        const lons = lineCoords.map(c => c[0]);
+        const lats = lineCoords.map(c => c[1]);
+        const minLng = Math.min(...lons), maxLng = Math.max(...lons);
+        const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+        map.fitBounds([[minLng, minLat], [maxLng, maxLat]], { padding: 60 });
+      }
+
+      // ユーザーピンの追加/削除
+      async function addUserPin(target) {
+        const pin = { name: target.name || 'Custom Pin', category: target.category || 'custom', lat: target.lat, lon: target.lon, note: target.note };
+        const res = await fetch(`${apiBase}/api/pins`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(pin) });
+        if (!res.ok) { alert('追加に失敗'); return; }
+        addPin(pin);
+      }
+      async function removeUserPin(target) {
+        const url = new URL(`${apiBase}/api/pins`);
+        url.searchParams.set('name', target.name || 'Custom Pin');
+        url.searchParams.set('lat', target.lat);
+        url.searchParams.set('lon', target.lon);
+        const res = await fetch(url, { method: 'DELETE' });
+        if (!res.ok) { alert('削除に失敗'); return; }
+        // 再描画
+        markers.forEach(({ marker }) => marker.remove());
+        markers.length = 0;
+        await loadHistory();
+      }
+
     })();
   </script>
 </body>
