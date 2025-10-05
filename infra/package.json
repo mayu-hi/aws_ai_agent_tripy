@@ -1,0 +1,12 @@
+{
+  "name": "tripy-infra",
+  "version": "0.1.0",
+  "private": true,
+  "bin": { "tripy-infra": "bin/tripy-infra.ts" },
+  "devDependencies": {
+    "aws-cdk-lib": "2.154.0",
+    "constructs": "10.3.0",
+    "typescript": "^5.4.5",
+    "ts-node": "^10.9.2"
+  }
+}

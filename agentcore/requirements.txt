@@ -1,0 +1,5 @@
+boto3
+httpx
+setuptools-scm
+bedrock_agentcore
+strands
