@@ -27,7 +27,26 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - bedrock:InvokeModel
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
       Resource: "*"
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:3000
+        - http://127.0.0.1:3000
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Agent-Token
+        - X-User-Id
+      allowedMethods:
+        - GET
+        - POST
+        - OPTIONS
+
+
 
 functions:
   trips:
@@ -65,6 +84,14 @@ functions:
           path: /todos/{proxy+}
           method: any
           cors: true
+
+  recommend:
+    handler: src/handlers/recommend.handler
+    timeout: 30
+    memorySize: 512
+    events:
+      - httpApi: { method: POST, path: /reco/invoke }
+      - httpApi: { method: POST, path: /trips/recommend }   # {proxy+} より具体的なのでこちらが優先
 
 resources:
   Resources:

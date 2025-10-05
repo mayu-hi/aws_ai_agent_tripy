@@ -27,11 +27,33 @@
             "dynamodb:PutItem",
             "dynamodb:UpdateItem",
             "dynamodb:DeleteItem",
-            "bedrock:InvokeModel"
+            "bedrock:InvokeModel",
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
           ],
           "Resource": "*"
         }
       ],
+      "httpApi": {
+        "cors": {
+          "allowedOrigins": [
+            "http://localhost:3000",
+            "http://127.0.0.1:3000"
+          ],
+          "allowedHeaders": [
+            "Content-Type",
+            "Authorization",
+            "X-Agent-Token",
+            "X-User-Id"
+          ],
+          "allowedMethods": [
+            "GET",
+            "POST",
+            "OPTIONS"
+          ]
+        }
+      },
       "stage": "dev",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
@@ -125,6 +147,12 @@
               "LogGroupName": "/aws/lambda/tripy-backend-dev-todos"
             }
           },
+          "RecommendLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/tripy-backend-dev-recommend"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -213,7 +241,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/tripy-backend/dev/1759636815552-2025-10-05T04:00:15.552Z/tripy-backend.zip"
+                "S3Key": "serverless/tripy-backend/dev/1759666368659-2025-10-05T12:12:48.659Z/tripy-backend.zip"
               },
               "Handler": "src/handlers/trips.handler",
               "Runtime": "nodejs18.x",
@@ -255,7 +283,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/tripy-backend/dev/1759636815552-2025-10-05T04:00:15.552Z/tripy-backend.zip"
+                "S3Key": "serverless/tripy-backend/dev/1759666368659-2025-10-05T12:12:48.659Z/tripy-backend.zip"
               },
               "Handler": "src/handlers/bookings.handler",
               "Runtime": "nodejs18.x",
@@ -297,7 +325,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/tripy-backend/dev/1759636815552-2025-10-05T04:00:15.552Z/tripy-backend.zip"
+                "S3Key": "serverless/tripy-backend/dev/1759666368659-2025-10-05T12:12:48.659Z/tripy-backend.zip"
               },
               "Handler": "src/handlers/todos.handler",
               "Runtime": "nodejs18.x",
@@ -332,34 +360,86 @@
               "TodosLogGroup"
             ]
           },
-          "TripsLambdaVersionOfUmBrvJ4e42jiC0jyD9ncvlqVYrWsmI5oSwZLu0zI": {
+          "RecommendLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/tripy-backend/dev/1759666368659-2025-10-05T12:12:48.659Z/tripy-backend.zip"
+              },
+              "Handler": "src/handlers/recommend.handler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "tripy-backend-dev-recommend",
+              "MemorySize": 512,
+              "Timeout": 30,
+              "Tags": [
+                {
+                  "Key": "Owner",
+                  "Value": "AI-Hackathon"
+                },
+                {
+                  "Key": "Team",
+                  "Value": "01_Athena"
+                }
+              ],
+              "Environment": {
+                "Variables": {
+                  "TRIPS_TABLE": "trips-table-dev",
+                  "BOOKINGS_TABLE": "bookings-table-dev",
+                  "TODOS_TABLE": "todos-table-dev"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "RecommendLogGroup"
+            ]
+          },
+          "TripsLambdaVersiony6w2vuLW94qfkYVjoJZ5rshcmhW9XCqAOwJX1qwcxYo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "TripsLambdaFunction"
               },
-              "CodeSha256": "SoyIaiABTB/b3qqdP9a3ERRyNdh+5HkgnatTqPfFFTk="
+              "CodeSha256": "9KTQkWwdK5KZk/Hjbq2Hb8JFSMomM5vbOeN2IHJEsx8="
             }
           },
-          "BookingsLambdaVersionRWd4mjIcNfD0RarUQOA45o3xKEzClYuXVEQkxfEXoY": {
+          "BookingsLambdaVersionsRB7fFh32qaK0bHOgE49EB8pEEEIaeoC7jvTvZxMz30": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BookingsLambdaFunction"
               },
-              "CodeSha256": "SoyIaiABTB/b3qqdP9a3ERRyNdh+5HkgnatTqPfFFTk="
+              "CodeSha256": "9KTQkWwdK5KZk/Hjbq2Hb8JFSMomM5vbOeN2IHJEsx8="
             }
           },
-          "TodosLambdaVersion7dCbqk7fps0XocwRa5YyGJsnWucZfjzKL6e6zjiuo8": {
+          "TodosLambdaVersionSb0VfEz7mtLOku2bY2z9glVgWmBqNfsmzE4jK5cmWDg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "TodosLambdaFunction"
               },
-              "CodeSha256": "SoyIaiABTB/b3qqdP9a3ERRyNdh+5HkgnatTqPfFFTk="
+              "CodeSha256": "9KTQkWwdK5KZk/Hjbq2Hb8JFSMomM5vbOeN2IHJEsx8="
+            }
+          },
+          "RecommendLambdaVersion4c8iUI2NzKjxLv1SjcpiNCHZFEYamI5UpR4zInChTo": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "RecommendLambdaFunction"
+              },
+              "CodeSha256": "9KTQkWwdK5KZk/Hjbq2Hb8JFSMomM5vbOeN2IHJEsx8="
             }
           },
           "ApiGatewayRestApi": {
@@ -1001,7 +1081,7 @@
               "TodosLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1759636764416": {
+          "ApiGatewayDeployment1759666343049": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1135,6 +1215,144 @@
               }
             }
           },
+          "HttpApi": {
+            "Type": "AWS::ApiGatewayV2::Api",
+            "Properties": {
+              "Name": "dev-tripy-backend",
+              "ProtocolType": "HTTP",
+              "Tags": {
+                "Owner": "AI-Hackathon",
+                "Team": "01_Athena"
+              },
+              "CorsConfiguration": {
+                "AllowHeaders": [
+                  "Content-Type",
+                  "Authorization",
+                  "X-Agent-Token",
+                  "X-User-Id"
+                ],
+                "AllowMethods": [
+                  "GET",
+                  "POST",
+                  "OPTIONS"
+                ],
+                "AllowOrigins": [
+                  "http://localhost:3000",
+                  "http://127.0.0.1:3000"
+                ]
+              }
+            }
+          },
+          "HttpApiStage": {
+            "Type": "AWS::ApiGatewayV2::Stage",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "StageName": "$default",
+              "AutoDeploy": true,
+              "DefaultRouteSettings": {
+                "DetailedMetricsEnabled": false
+              },
+              "Tags": {
+                "Owner": "AI-Hackathon",
+                "Team": "01_Athena"
+              }
+            }
+          },
+          "RecommendLambdaPermissionHttpApi": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "RecommendLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "HttpApi"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "HttpApiIntegrationRecommend": {
+            "Type": "AWS::ApiGatewayV2::Integration",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "IntegrationType": "AWS_PROXY",
+              "IntegrationUri": {
+                "$ref": "$[\"service\"][\"provider\"][\"compiledCloudFormationTemplate\"][\"Resources\"][\"RecommendLambdaPermissionHttpApi\"][\"Properties\"][\"FunctionName\"]"
+              },
+              "PayloadFormatVersion": "2.0",
+              "TimeoutInMillis": 30000
+            }
+          },
+          "HttpApiRoutePostRecoInvoke": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "POST /reco/invoke",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationRecommend"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationRecommend"
+          },
+          "HttpApiRoutePostTripsRecommend": {
+            "Type": "AWS::ApiGatewayV2::Route",
+            "Properties": {
+              "ApiId": {
+                "Ref": "HttpApi"
+              },
+              "RouteKey": "POST /trips/recommend",
+              "Target": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "integrations",
+                    {
+                      "Ref": "HttpApiIntegrationRecommend"
+                    }
+                  ]
+                ]
+              }
+            },
+            "DependsOn": "HttpApiIntegrationRecommend"
+          },
           "TripsTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -1251,7 +1469,7 @@
           "TripsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "TripsLambdaVersionOfUmBrvJ4e42jiC0jyD9ncvlqVYrWsmI5oSwZLu0zI"
+              "Ref": "TripsLambdaVersiony6w2vuLW94qfkYVjoJZ5rshcmhW9XCqAOwJX1qwcxYo"
             },
             "Export": {
               "Name": "sls-tripy-backend-dev-TripsLambdaFunctionQualifiedArn"
@@ -1260,7 +1478,7 @@
           "BookingsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BookingsLambdaVersionRWd4mjIcNfD0RarUQOA45o3xKEzClYuXVEQkxfEXoY"
+              "Ref": "BookingsLambdaVersionsRB7fFh32qaK0bHOgE49EB8pEEEIaeoC7jvTvZxMz30"
             },
             "Export": {
               "Name": "sls-tripy-backend-dev-BookingsLambdaFunctionQualifiedArn"
@@ -1269,10 +1487,19 @@
           "TodosLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "TodosLambdaVersion7dCbqk7fps0XocwRa5YyGJsnWucZfjzKL6e6zjiuo8"
+              "Ref": "TodosLambdaVersionSb0VfEz7mtLOku2bY2z9glVgWmBqNfsmzE4jK5cmWDg"
             },
             "Export": {
               "Name": "sls-tripy-backend-dev-TodosLambdaFunctionQualifiedArn"
+            }
+          },
+          "RecommendLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "RecommendLambdaVersion4c8iUI2NzKjxLv1SjcpiNCHZFEYamI5UpR4zInChTo"
+            },
+            "Export": {
+              "Name": "sls-tripy-backend-dev-RecommendLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1299,6 +1526,40 @@
             },
             "Export": {
               "Name": "sls-tripy-backend-dev-ServiceEndpoint"
+            }
+          },
+          "HttpApiId": {
+            "Description": "Id of the HTTP API",
+            "Value": {
+              "Ref": "HttpApi"
+            },
+            "Export": {
+              "Name": "sls-tripy-backend-dev-HttpApiId"
+            }
+          },
+          "HttpApiUrl": {
+            "Description": "URL of the HTTP API",
+            "Value": {
+              "Fn::Join": [
+                "",
+                [
+                  "https://",
+                  {
+                    "Ref": "HttpApi"
+                  },
+                  ".execute-api.",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ".",
+                  {
+                    "Ref": "AWS::URLSuffix"
+                  }
+                ]
+              ]
+            },
+            "Export": {
+              "Name": "sls-tripy-backend-dev-HttpApiUrl"
             }
           }
         }
@@ -1457,7 +1718,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "TripsLambdaVersionOfUmBrvJ4e42jiC0jyD9ncvlqVYrWsmI5oSwZLu0zI"
+        "versionLogicalId": "TripsLambdaVersiony6w2vuLW94qfkYVjoJZ5rshcmhW9XCqAOwJX1qwcxYo"
       },
       "bookings": {
         "handler": "src/handlers/bookings.handler",
@@ -1519,7 +1780,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "BookingsLambdaVersionRWd4mjIcNfD0RarUQOA45o3xKEzClYuXVEQkxfEXoY"
+        "versionLogicalId": "BookingsLambdaVersionsRB7fFh32qaK0bHOgE49EB8pEEEIaeoC7jvTvZxMz30"
       },
       "todos": {
         "handler": "src/handlers/todos.handler",
@@ -1581,7 +1842,38 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "TodosLambdaVersion7dCbqk7fps0XocwRa5YyGJsnWucZfjzKL6e6zjiuo8"
+        "versionLogicalId": "TodosLambdaVersionSb0VfEz7mtLOku2bY2z9glVgWmBqNfsmzE4jK5cmWDg"
+      },
+      "recommend": {
+        "handler": "src/handlers/recommend.handler",
+        "timeout": 30,
+        "memorySize": 512,
+        "events": [
+          {
+            "httpApi": {
+              "method": "POST",
+              "path": "/reco/invoke"
+            },
+            "resolvedMethod": "POST",
+            "resolvedPath": "/reco/invoke"
+          },
+          {
+            "httpApi": {
+              "method": "POST",
+              "path": "/trips/recommend"
+            },
+            "resolvedMethod": "POST",
+            "resolvedPath": "/trips/recommend"
+          }
+        ],
+        "name": "tripy-backend-dev-recommend",
+        "package": {
+          "artifact": ".serverless\\tripy-backend.zip"
+        },
+        "memory": 512,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "RecommendLambdaVersion4c8iUI2NzKjxLv1SjcpiNCHZFEYamI5UpR4zInChTo"
       }
     },
     "resources": {
@@ -1716,7 +2008,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/tripy-backend/dev/1759636815552-2025-10-05T04:00:15.552Z",
+    "artifactDirectoryName": "serverless/tripy-backend/dev/1759666368659-2025-10-05T12:12:48.659Z",
     "artifact": ""
   }
 }
