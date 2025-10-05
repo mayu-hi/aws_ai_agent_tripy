@@ -85,13 +85,25 @@ functions:
           method: any
           cors: true
 
-  recommend:
-    handler: src/handlers/recommend.handler
+  recommend_mock_itinerary:
+    handler: src/handlers/recommend_mock_itinerary.handler
     timeout: 30
     memorySize: 512
     events:
       - httpApi: { method: POST, path: /reco/invoke }
-      - httpApi: { method: POST, path: /trips/recommend }   # {proxy+} より具体的なのでこちらが優先
+      - httpApi: { method: POST, path: /trips/recommend }
+
+  recommend_spots:
+    handler: src/handlers/recommend_spots.handler
+    timeout: 30
+    memorySize: 512
+    environment:
+      RECO_TOKEN: ${env:RECO_TOKEN}
+    events:
+      - httpApi:
+          method: POST
+          path: /recommend
+
 
 resources:
   Resources:
@@ -161,4 +173,5 @@ resources:
 
 plugins:
   - serverless-webpack
+  - serverless-dotenv-plugin
   #- serverless-offline
