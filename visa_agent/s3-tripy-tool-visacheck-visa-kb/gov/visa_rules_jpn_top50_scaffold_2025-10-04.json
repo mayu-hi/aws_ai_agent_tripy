@@ -1,0 +1,917 @@
+[
+  {
+    "country_code": "FRA",
+    "country_name": "France",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "ESP",
+    "country_name": "Spain",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "USA",
+    "country_name": "United States",
+    "visa_policy": "visa_free_under_VWP",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "ESTA",
+        "required": true,
+        "url": "https://esta.cbp.dhs.gov/",
+        "fee_currency": "USD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_airside"
+    ],
+    "notes": "Visa Waiver Program (VWP) applies to Japan. ESTA approval required prior to boarding.",
+    "sources": [
+      "https://esta.cbp.dhs.gov/",
+      "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "TUR",
+    "country_name": "Türkiye",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can stay up to 90 days in any 180-day period without a visa.",
+    "sources": [
+      "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+      "https://www.evisa.gov.tr/en/info/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MEX",
+    "country_name": "Mexico",
+    "visa_policy": "visa_free",
+    "max_stay_days": 180,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can enter Mexico visa-free for up to 180 days for tourism/business.",
+    "sources": [
+      "https://embamex.sre.gob.mx/japon/index.php/visas",
+      "https://consulmex.sre.gob.mx/houston/index.php/visas"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "DEU",
+    "country_name": "Germany",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "JPN",
+    "country_name": "Japan",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "GRC",
+    "country_name": "Greece",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "THA",
+    "country_name": "Thailand",
+    "visa_policy": "visa_free",
+    "max_stay_days": 60,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "visiting_friends"
+    ],
+    "notes": "Visa Exemption program currently allows up to 60 days; extensions possible in-country. Confirm latest pre-arrival requirements.",
+    "sources": [
+      "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Thailand.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "AUT",
+    "country_name": "Austria",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "SAU",
+    "country_name": "Saudi Arabia",
+    "visa_policy": "eVisa_or_VisaOnArrival",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "eVisa",
+        "required": false,
+        "url": "https://visa.visitsaudi.com/"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "観光eVisaまたは到着査証の対象。日本はeVisa対象国。宗教行事等は別手続。",
+    "sources": [
+      "https://visa.visitsaudi.com/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MYS",
+    "country_name": "Malaysia",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens do not require a visa for social visits not exceeding 90 days.",
+    "sources": [
+      "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
+      "https://www.kln.gov.my/documents/33866/10223708/1.+VISA+APPLICATION+(English)+(Updated+on+1+Oct.+2025).pdf"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "HKG",
+    "country_name": "Hong Kong SAR",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "Japanese citizens can visit Hong Kong visa-free for up to 90 days.",
+    "sources": [
+      "https://www.immd.gov.hk/eng/services/visas/visit-transit/visit-visa-entry-permit.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "NLD",
+    "country_name": "Netherlands",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "CAN",
+    "country_name": "Canada",
+    "visa_policy": "visa_free_with_eTA",
+    "max_stay_days": 180,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "eTA",
+        "required": true,
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+        "fee_currency": "CAD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_air"
+    ],
+    "notes": "eTA required when flying to or transiting a Canadian airport. Land/sea arrivals generally exempt from eTA but other conditions apply.",
+    "sources": [
+      "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+      "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/eligibility.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "VNM",
+    "country_name": "Vietnam",
+    "visa_policy": "visa_free",
+    "max_stay_days": 45,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "As of Aug 15, 2025, Japan is among countries with 45-day visa exemption; longer stays can use e-visa.",
+    "sources": [
+      "https://vietnam.travel/things-to-do/new-visa-exemption-policies-effective-15-august-2025",
+      "https://vnembassy-jp.org/en/vietnam-extends-visa-exemption-policy"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MAR",
+    "country_name": "Morocco",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "KOR",
+    "country_name": "Republic of Korea",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "K-ETA",
+        "required": false,
+        "url": "https://www.k-eta.go.kr/",
+        "note": "Temporary exemption through 2025-12-31 for eligible countries incl. Japan"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "K-ETA requirement temporarily exempt until 2025-12-31; travelers may still apply to expedite entry and skip arrival card.",
+    "sources": [
+      "https://overseas.mofa.go.kr/us-houston-en/brd/m_5573/view.do?page=1&seq=759930",
+      "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html",
+      "https://www.k-eta.go.kr/portal/guide/viewetaalification.do?locale=EN"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MAC",
+    "country_name": "Macao SAR",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "EGY",
+    "country_name": "Egypt",
+    "visa_policy": "eVisa_or_VisaOnArrival",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "eVisa",
+        "required": false,
+        "url": "https://visa2egypt.gov.eg/"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "日本はe-Visa対象。空路での到着査証も一般的に可。最新運用は公式で確認。",
+    "sources": [
+      "https://visa2egypt.gov.eg/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "ALB",
+    "country_name": "Albania",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "TUN",
+    "country_name": "Tunisia",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "ZAF",
+    "country_name": "South Africa",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "SWE",
+    "country_name": "Sweden",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "BGR",
+    "country_name": "Bulgaria",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "DOM",
+    "country_name": "Dominican Republic",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "AUS",
+    "country_name": "Australia",
+    "visa_policy": "ETA_required",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "ETA (subclass 601)",
+        "required": true,
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+        "fee_currency": "AUD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens apply via Australian ETA app; stays up to 3 months per visit.",
+    "sources": [
+      "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+      "https://japan.embassy.gov.au/tkyo/ETA601.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "TWN",
+    "country_name": "Taiwan",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens may stay up to 90 days visa-free; entry permit not required.",
+    "sources": [
+      "https://www.boca.gov.tw/cp-149-4486-7785a-2.html",
+      "https://www.roc-taiwan.org/jp_ja/post/78.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "IRN",
+    "country_name": "Iran",
+    "visa_policy": "eVisa_or_VisaRequired",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "eVisa",
+        "required": true,
+        "url": "https://evisa.mfa.ir/en/"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "日本の扱いは頻繁に更新され得るため公式eVisaで事前確認。",
+    "sources": [
+      "https://evisa.mfa.ir/en/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "BRA",
+    "country_name": "Brazil",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens may enter Brazil visa-free for up to 90 days, extendable to 180 days per year.",
+    "sources": [
+      "https://www.gov.br/mre/pt-br",
+      "https://www.itamaraty.gov.br/en/consular-services/visas"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "KHM",
+    "country_name": "Cambodia",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "ARG",
+    "country_name": "Argentina",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "IRL",
+    "country_name": "Ireland",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "COL",
+    "country_name": "Colombia",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "PHL",
+    "country_name": "Philippines",
+    "visa_policy": "visa_free",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can enter visa-free for up to 30 days with onward ticket.",
+    "sources": [
+      "https://dfa.gov.ph/visa",
+      "https://consular.dfa.gov.ph/services/visa/visa-general-info"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "CHL",
+    "country_name": "Chile",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "JOR",
+    "country_name": "Jordan",
+    "visa_policy": "eVisa_or_VisaOnArrival",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "Jordan eVisa",
+        "required": false,
+        "url": "https://www.jordanpass.jo/"
+      }
+    ],
+    "purposes": [
+      "tourism"
+    ],
+    "notes": "Jordan Pass でビザと観光地入場がセットに。到着査証も可とされるが最新要件を要確認。",
+    "sources": [
+      "https://www.jordanpass.jo/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "GEO",
+    "country_name": "Georgia",
+    "visa_policy": "visa_free",
+    "max_stay_days": 360,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "remote_work"
+    ],
+    "notes": "日本を含む一部国籍は最長365日に近い長期滞在が可能（実務上360日）。",
+    "sources": [
+      "https://www.geoconsul.gov.ge/en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "QAT",
+    "country_name": "Qatar",
+    "visa_policy": "visa_free",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "多くの国籍に対し到着時のビザ免除枠あり。日本は30日免除（延長可）とされるケースが一般的。要最新確認。",
+    "sources": [
+      "https://visitqatar.com/intl-en/practical-info/visa-information"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "AND",
+    "country_name": "Andorra",
+    "visa_policy": "schengen_dependent",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "アンドラ自体はシェンゲン外だが出入国はFR/ES経由。短期はシェンゲン滞在枠への依存あり。",
+    "sources": [
+      "https://www.exteriors.ad/en/immigration/entry-and-stay-in-andorra/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "CYP",
+    "country_name": "Cyprus",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "MLT",
+    "country_name": "Malta",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "PER",
+    "country_name": "Peru",
+    "visa_policy": "visa_free",
+    "max_stay_days": 183,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "日本国籍は観光183日まで免除の運用が一般的。現地入国管理の裁量に留意。",
+    "sources": [
+      "https://www.gob.pe/migraciones"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "SLV",
+    "country_name": "El Salvador",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "CRI",
+    "country_name": "Costa Rica",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "FIN",
+    "country_name": "Finland",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "EST",
+    "country_name": "Estonia",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MNE",
+    "country_name": "Montenegro",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  },
+  {
+    "country_code": "ROU",
+    "country_name": "Romania",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Schengen短期滞在の共通ルール（180日内90日）。日本は短期免除対象。長期・就労は別手続。",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "SRB",
+    "country_name": "Serbia",
+    "visa_policy": "TBD",
+    "max_stay_days": null,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "要公式確認。一次情報ソースを付与のうえ確定すること。",
+    "sources": [],
+    "last_checked": "2025-10-04",
+    "status": "pending_verification"
+  }
+]
