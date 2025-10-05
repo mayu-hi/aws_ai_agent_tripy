@@ -27,7 +27,26 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - bedrock:InvokeModel
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
       Resource: "*"
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:3000
+        - http://127.0.0.1:3000
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Agent-Token
+        - X-User-Id
+      allowedMethods:
+        - GET
+        - POST
+        - OPTIONS
+
+
 
 functions:
   trips:
@@ -65,6 +84,26 @@ functions:
           path: /todos/{proxy+}
           method: any
           cors: true
+
+  recommend_mock_itinerary:
+    handler: src/handlers/recommend_mock_itinerary.handler
+    timeout: 30
+    memorySize: 512
+    events:
+      - httpApi: { method: POST, path: /reco/invoke }
+      - httpApi: { method: POST, path: /trips/recommend }
+
+  recommend_spots:
+    handler: src/handlers/recommend_spots.handler
+    timeout: 30
+    memorySize: 512
+    environment:
+      RECO_TOKEN: ${env:RECO_TOKEN}
+    events:
+      - httpApi:
+          method: POST
+          path: /recommend
+
 
 resources:
   Resources:
@@ -134,4 +173,5 @@ resources:
 
 plugins:
   - serverless-webpack
+  - serverless-dotenv-plugin
   #- serverless-offline

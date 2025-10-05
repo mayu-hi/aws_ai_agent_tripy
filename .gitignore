@@ -1,0 +1,55 @@
+# --- 共通 ---
+.DS_Store
+Thumbs.db
+*.log
+*.out
+*.out/*
+
+# --- 環境ファイル ---
+.env
+*.local
+.env.*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+*/.venv/
+*/venv/
+pyvenv.cfg
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+
+# --- Node.js / Frontend ---
+node_modules/
+dist/
+build/
+npm-debug.log
+yarn-error.log
+
+# --- Docker ---
+*.pid
+*.seed
+*.pid.lock
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+
+# --- Tests / Coverage ---
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.nyc_output/
+.jest/
+
+# --- Others ---
+*.bak
+*.tmp
+*.cache
