@@ -16,7 +16,8 @@ model = BedrockModel(model_id=MODEL_ID, region_name=REGION)
 # =========================
 # レジストリ & ヘルスチェック設定（S3一択）
 # =========================
-REGISTRY_S3 = os.environ.get("REGISTRY_S3")  # 例: s3://tripy-registry/stg/tools.json
+# REGISTRY_S3 = os.environ.get("REGISTRY_S3")  # 例: s3://tools.json
+REGISTRY_S3 = os.environ.get("REGISTRY_S3") or "s3://s3-tripy-agent-registry-20251003/tools.json"
 if not REGISTRY_S3:
     print("[WARN] REGISTRY_S3 が未設定です。起動は続行しますが、モックツールのみ有効になります。")
 

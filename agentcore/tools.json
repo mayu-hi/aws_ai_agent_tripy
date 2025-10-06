@@ -1,0 +1,27 @@
+[
+  {
+    "name": "VisaCheckTool",
+    "method": "POST",
+    "url": "https://5t5pe956d8.execute-api.ap-northeast-1.amazonaws.com/prod/visa-check",
+    "health_url": "https://5t5pe956d8.execute-api.ap-northeast-1.amazonaws.com/prod/health",
+    "desc": "海外旅行の際に目的地のビザ要否を判定するツール。国内旅行には使用しない。入力は {\"departure\":\"JP\",\"destination\":\"USA\",\"purpose\":\"tourism\",\"days\":14} の形式 。",
+    "timeout_ms": 5000,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Agent-Token": "${VISA_TOKEN}"
+    },
+    "owner": "Team 01_Athena",
+    "version": "0.2.0",
+    "tags": ["visa", "travel", "policy", "regulation"],
+    "priority": 70
+  },
+  {
+    "name": "RecommendTool",
+    "desc": "旅行先レコメンドAPI（Londonモック）",
+    "method": "POST",
+    "url": "https://eki5d94j09.execute-api.us-west-2.amazonaws.com/prod/recommend",
+    "health_url": "https://eki5d94j09.execute-api.us-west-2.amazonaws.com/prod/health",
+    "timeout_ms": 5000,
+    "headers": { "X-Agent-Token": "tripy-dev-2025" }
+  }
+]

@@ -7,7 +7,9 @@ ENV UV_SYSTEM_PYTHON=1 \
     PYTHONUNBUFFERED=1 \
     DOCKER_CONTAINER=1 \
     AWS_REGION=us-west-2 \
-    AWS_DEFAULT_REGION=us-west-2
+    AWS_DEFAULT_REGION=us-west-2 \
+    BEDROCK_AGENTCORE_MEMORY_ID=tripy_agentcore_v2_mem-a2ZB5FEyAP \
+    BEDROCK_AGENTCORE_MEMORY_NAME=tripy_agentcore_memory
 
 
 

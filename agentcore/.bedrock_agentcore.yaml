@@ -57,7 +57,7 @@ agents:
     bedrock_agentcore:
       agent_id: tripy_agentcore-3HFY142gVp
       agent_arn: arn:aws:bedrock-agentcore:us-west-2:047786098634:runtime/tripy_agentcore-3HFY142gVp
-      agent_session_id: 583c3482-3288-4ab8-96b0-a2951e105c75
+      agent_session_id: e2d89f94-83d1-4a95-9b42-169ec44a5c10
     codebuild:
       project_name: bedrock-agentcore-tripy_agentcore-builder
       execution_role: arn:aws:iam::047786098634:role/AmazonBedrockAgentCoreSDKCodeBuild-us-west-2-5b720167d2
