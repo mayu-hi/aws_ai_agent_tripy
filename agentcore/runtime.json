@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Sid": "DdbAccess",
+      "Effect": "Allow",
+      "Action": ["dynamodb:PutItem","dynamodb:Query"],
+      "Resource": ["arn:aws:dynamodb:us-west-2:047786098634:table/TripyMemory"]
+    },
+    { "Sid": "S3ToolsJsonRead",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": ["arn:aws:s3:::s3-tripy-agent-registry-20251003/tools.json"]
+    },
+    { "Sid": "BedrockInvoke",
+      "Effect": "Allow",
+      "Action": ["bedrock:InvokeModel","bedrock:InvokeModelWithResponseStream"],
+      "Resource": ["*"]
+    }
+  ]
+}
