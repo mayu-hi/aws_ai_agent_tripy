@@ -1,0 +1,10 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Sid": "PassRuntimeRole",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::047786098634:role/AmazonBedrockAgentCoreSDKRuntime-us-west-2-7578ccdac5"
+    }
+  ]
+}

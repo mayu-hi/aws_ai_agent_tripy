@@ -1,0 +1,11 @@
+[
+  {
+    "name": "RecommendTool",
+    "desc": "Tripy Recommend API",
+    "method": "POST",
+    "url": "https://eki5d94j09.execute-api.us-west-2.amazonaws.com/prod/recommend",
+    "health_url": "https://eki5d94j09.execute-api.us-west-2.amazonaws.com/prod/health",
+    "timeout_ms": 15000,
+    "headers": { "Content-Type": "application/json" }
+  }
+]

@@ -1,30 +1,36 @@
-// src/handlers/recommend_spots.js
+// src/handlers/recommend_spots.js ではなく、下の path に合わせて配置するなら:
 exports.handler = async (event) => {
-  if (event?.requestContext?.http?.method === 'OPTIONS') return ok('');
+  // CORS/プリフライト
+  if (event?.requestContext?.httpMethod === 'OPTIONS' ||
+      event?.requestContext?.http?.method === 'OPTIONS') return ok('');
 
-  const path = event.rawPath || event.requestContext?.http?.path || '/';
-  const last = '/' + path.replace(/\/+$/, '').split('/').pop();
-  if (event.requestContext?.http?.method !== 'POST' ||
-      !(['/recommend','/spots','/trips/recommend'].includes(last))) return notFound();
+  const method = event?.requestContext?.httpMethod || event?.requestContext?.http?.method || 'GET';
+  const path   = event?.rawPath || event?.requestContext?.http?.path || '/';
+  const last   = '/' + String(path).replace(/\/+$/, '').split('/').pop();
 
+  // ヘルス
+  if (method === 'GET' && last === '/health') return ok({status:'ok'});
+
+  // ルート制御
+  if (method !== 'POST' || !(['/recommend','/spots','/trips/recommend'].includes(last))) return notFound();
+
+  // 認可（トークン）
   const token = header(event, 'x-agent-token');
   const required = process.env.RECO_TOKEN;
   if (required && token !== required) return unauthorized();
 
+  // 入力
   const body = parseJsonBody(event);
   const city = (body?.city || 'London').toLowerCase();
   const persona = body?.persona_id || 'uni_female_hp_cafe_beginner';
 
-  // --- デモ用：ロンドン + ペルソナ1 固定の候補 ---
+  // デモ用（ロンドン固定）
   const result = buildForPersona1London();
 
-  return ok({
-    chat: result.chat,     // 1) チャットで返す文面
-    map: result.map        // 2) フロントがピン打ちに使う
-  });
+  return ok({ chat: result.chat, map: result.map });
 };
 
-// ===== helpers（既存 from your fileを流用でOK） =====
+// ===== helpers =====
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type,Authorization,X-Agent-Token,X-User-Id',
@@ -49,7 +55,6 @@ function buildForPersona1London() {
     { name: "Sketch (Gallery)", lat: 51.5111, lon: -0.1416, category: "cafe_brunch", why: "特別感あるティー体験" },
     { name: "Notting Hill – Farm Girl", lat: 51.5160, lon: -0.2023, category: "cafe", why: "ノッティングヒル散策とセット" }
   ];
-
   const chat = [
     "卒業旅行＆ハリポタ好き向けに、ロンドンの『映え×行きやすさ』優先で10スポットを選びました。",
     "中心地で回しやすい順で並べ、スタジオツアーだけは郊外枠として別途予約推奨です。",
@@ -60,9 +65,5 @@ function buildForPersona1London() {
     "・WB Studio Tour：半日〜1日枠、事前予約が安全です。",
     "希望があれば、午前/午後での回し方や地下鉄ルートも提案できます。"
   ].join("\n");
-
-  return {
-    chat,
-    map: { city: "London", center: { lat: 51.5074, lon: -0.1278 }, spots }
-  };
+  return { chat, map: { city: "London", center: { lat: 51.5074, lon: -0.1278 }, spots } };
 }

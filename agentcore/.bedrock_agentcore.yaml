@@ -1,0 +1,74 @@
+default_agent: tripy_agentcore
+agents:
+  tripy_agentcore_v2:
+    name: tripy_agentcore_v2
+    entrypoint: tripy_agentcore.py
+    platform: linux/arm64
+    container_runtime: none
+    aws:
+      execution_role: arn:aws:iam::047786098634:role/AmazonBedrockAgentCoreSDKRuntime-us-west-2-7578ccdac5
+      execution_role_auto_create: false
+      account: 047786098634
+      region: us-west-2
+      ecr_repository: 047786098634.dkr.ecr.us-west-2.amazonaws.com/bedrock-agentcore-tripy_agentcore_v2
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: null
+      agent_arn: null
+      agent_session_id: null
+    codebuild:
+      project_name: null
+      execution_role: null
+      source_bucket: null
+    memory:
+      mode: STM_ONLY
+      memory_id: tripy_agentcore_v2_mem-a2ZB5FEyAP
+      memory_arn: arn:aws:bedrock-agentcore:us-west-2:047786098634:memory/tripy_agentcore_v2_mem-a2ZB5FEyAP
+      memory_name: tripy_agentcore_v2_mem
+      event_expiry_days: 30
+      first_invoke_memory_check_done: false
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null
+  tripy_agentcore:
+    name: tripy_agentcore
+    entrypoint: tripy_agentcore.py
+    platform: linux/arm64
+    container_runtime: none
+    aws:
+      execution_role: arn:aws:iam::047786098634:role/AmazonBedrockAgentCoreSDKRuntime-us-west-2-5b720167d2
+      execution_role_auto_create: false
+      account: 047786098634
+      region: us-west-2
+      ecr_repository: 047786098634.dkr.ecr.us-west-2.amazonaws.com/bedrock-agentcore-tripy_agentcore
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: tripy_agentcore-3HFY142gVp
+      agent_arn: arn:aws:bedrock-agentcore:us-west-2:047786098634:runtime/tripy_agentcore-3HFY142gVp
+      agent_session_id: e2d89f94-83d1-4a95-9b42-169ec44a5c10
+    codebuild:
+      project_name: bedrock-agentcore-tripy_agentcore-builder
+      execution_role: arn:aws:iam::047786098634:role/AmazonBedrockAgentCoreSDKCodeBuild-us-west-2-5b720167d2
+      source_bucket: bedrock-agentcore-codebuild-sources-047786098634-us-west-2
+    memory:
+      mode: STM_AND_LTM
+      memory_id: tripy_agentcore_v2_mem-a2ZB5FEyAP
+      memory_arn: null
+      memory_name: tripy_agentcore_memory
+      event_expiry_days: 30
+      first_invoke_memory_check_done: true
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null
