@@ -265,10 +265,10 @@ def handler(event, context):
     headers_lower = {(k or "").lower(): v for k, v in headers.items()}
 
     # Auth
-    received_token = headers_lower.get("x-agent-token")
-    if AGENT_TOKEN and received_token != AGENT_TOKEN:
-        print(f"[WARN] unauthorized: received={received_token}")
-        return _resp(401, "unauthorized", "text/plain; charset=utf-8")
+    # received_token = headers_lower.get("x-agent-token")
+    # if AGENT_TOKEN and received_token != AGENT_TOKEN:
+    #     print(f"[WARN] unauthorized: received={received_token}")
+    #     return _resp(401, "unauthorized", "text/plain; charset=utf-8")
 
     # Body
     body_json, _ = _safe_parse_body(event)
