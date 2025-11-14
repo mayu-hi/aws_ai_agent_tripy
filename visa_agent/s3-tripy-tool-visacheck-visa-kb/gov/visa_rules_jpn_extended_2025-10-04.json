@@ -1,0 +1,419 @@
+[
+  {
+    "country_code": "USA",
+    "country_name": "United States",
+    "visa_policy": "visa_free_under_VWP",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "ESTA",
+        "required": true,
+        "url": "https://esta.cbp.dhs.gov/",
+        "fee_currency": "USD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_airside"
+    ],
+    "notes": "Visa Waiver Program (VWP) applies to Japan. ESTA approval required prior to boarding.",
+    "sources": [
+      "https://esta.cbp.dhs.gov/",
+      "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visa-waiver-program.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "GBR",
+    "country_name": "United Kingdom",
+    "visa_policy": "visa_free",
+    "max_stay_days": 180,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "ETA",
+        "required": true,
+        "url": "https://www.gov.uk/eta",
+        "fee_currency": "GBP"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_landside"
+    ],
+    "notes": "Japanese nationals require a UK ETA before travel; typical stay up to 6 months as a Standard Visitor.",
+    "sources": [
+      "https://www.gov.uk/eta",
+      "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+      "https://homeofficemedia.blog.gov.uk/electronic-travel-authorisation-eta-factsheet-april-2025/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "EU-SCHENGEN",
+    "country_name": "Schengen Area (29)",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Japanese nationals visa-exempt for short stays; total stay across Schengen limited to 90 days in any 180-day period.",
+    "sources": [
+      "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en",
+      "https://www.eeas.europa.eu/japan/travel_en"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "CAN",
+    "country_name": "Canada",
+    "visa_policy": "visa_free_with_eTA",
+    "max_stay_days": 180,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "eTA",
+        "required": true,
+        "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+        "fee_currency": "CAD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_air"
+    ],
+    "notes": "eTA required when flying to or transiting a Canadian airport. Land/sea arrivals generally exempt from eTA but other conditions apply.",
+    "sources": [
+      "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+      "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/eligibility.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "AUS",
+    "country_name": "Australia",
+    "visa_policy": "ETA_required",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "ETA (subclass 601)",
+        "required": true,
+        "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+        "fee_currency": "AUD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens apply via Australian ETA app; stays up to 3 months per visit.",
+    "sources": [
+      "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+      "https://japan.embassy.gov.au/tkyo/ETA601.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "NZL",
+    "country_name": "New Zealand",
+    "visa_policy": "visa_free_with_NZeTA",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "NZeTA",
+        "required": true,
+        "url": "https://www.immigration.govt.nz/visas/new-zealand-electronic-travel-authority-nzeta/",
+        "fee_currency": "NZD"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit_24h"
+    ],
+    "notes": "Visa waiver nationals (incl. Japan) need an NZeTA to visit up to 3 months; separate NZTD declaration also required.",
+    "sources": [
+      "https://www.immigration.govt.nz/visas/new-zealand-electronic-travel-authority-nzeta/",
+      "https://www.govt.nz/browse/immigration-and-visas/visitor-visas-and-the-nzeta/check-if-you-need-a-visitor-visa-or-an-nzeta/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "SGP",
+    "country_name": "Singapore",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "Most nationalities do not require a visa; Japanese nationals typically admitted visa-free. Check ICA entry requirements and SG Arrival Card.",
+    "sources": [
+      "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+      "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Singapore.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "THA",
+    "country_name": "Thailand",
+    "visa_policy": "visa_free",
+    "max_stay_days": 60,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "visiting_friends"
+    ],
+    "notes": "Visa Exemption program currently allows up to 60 days; extensions possible in-country. Confirm latest pre-arrival requirements.",
+    "sources": [
+      "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Thailand.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "IDN",
+    "country_name": "Indonesia",
+    "visa_policy": "visa_on_arrival_or_eVOA",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "e-VOA",
+        "required": false,
+        "url": "https://evisa.imigrasi.go.id/front/info/evoa",
+        "fee_currency": "IDR"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Visa-free entry for Japan is not currently in effect. Use Visa on Arrival (VoA) or apply e-VOA before travel. Separate Bali tourist levy and All-Indonesia digital arrival declaration may apply.",
+    "sources": [
+      "https://evisa.imigrasi.go.id/front/info/evoa"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "VNM",
+    "country_name": "Vietnam",
+    "visa_policy": "visa_free",
+    "max_stay_days": 45,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "As of Aug 15, 2025, Japan is among countries with 45-day visa exemption; longer stays can use e-visa.",
+    "sources": [
+      "https://vietnam.travel/things-to-do/new-visa-exemption-policies-effective-15-august-2025",
+      "https://vnembassy-jp.org/en/vietnam-extends-visa-exemption-policy"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MYS",
+    "country_name": "Malaysia",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens do not require a visa for social visits not exceeding 90 days.",
+    "sources": [
+      "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
+      "https://www.kln.gov.my/documents/33866/10223708/1.+VISA+APPLICATION+(English)+(Updated+on+1+Oct.+2025).pdf"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "KOR",
+    "country_name": "Republic of Korea",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [
+      {
+        "type": "K-ETA",
+        "required": false,
+        "url": "https://www.k-eta.go.kr/",
+        "note": "Temporary exemption through 2025-12-31 for eligible countries incl. Japan"
+      }
+    ],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "K-ETA requirement temporarily exempt until 2025-12-31; travelers may still apply to expedite entry and skip arrival card.",
+    "sources": [
+      "https://overseas.mofa.go.kr/us-houston-en/brd/m_5573/view.do?page=1&seq=759930",
+      "https://travel.state.gov/en/international-travel/travel-advisories/south-korea.html",
+      "https://www.k-eta.go.kr/portal/guide/viewetaalification.do?locale=EN"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "CHN",
+    "country_name": "China (Mainland)",
+    "visa_policy": "visa_free",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "visiting_friends"
+    ],
+    "notes": "China has extended unilateral visa-free entry to citizens of Japan for short stays up to 30 days, currently through 2025-12-31; check scope and conditions before travel.",
+    "sources": [
+      "https://www.reuters.com/world/china/china-expands-visa-free-access-japan-bulgaria-other-countries-2024-11-22/",
+      "https://www.visaforchina.cn/DEL3_EN/tongzhigonggao/327343163872251904.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "ARE",
+    "country_name": "United Arab Emirates",
+    "visa_policy": "visa_free",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can enter UAE visa-free for up to 30 days; extension possible in-country.",
+    "sources": [
+      "https://www.mofaic.gov.ae/en/visa-exemptions",
+      "https://www.visitdubai.com/en/plan-your-trip/visa-information"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "TUR",
+    "country_name": "Türkiye",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can stay up to 90 days in any 180-day period without a visa.",
+    "sources": [
+      "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+      "https://www.evisa.gov.tr/en/info/"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "PHL",
+    "country_name": "Philippines",
+    "visa_policy": "visa_free",
+    "max_stay_days": 30,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can enter visa-free for up to 30 days with onward ticket.",
+    "sources": [
+      "https://dfa.gov.ph/visa",
+      "https://consular.dfa.gov.ph/services/visa/visa-general-info"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "TWN",
+    "country_name": "Taiwan",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens may stay up to 90 days visa-free; entry permit not required.",
+    "sources": [
+      "https://www.boca.gov.tw/cp-149-4486-7785a-2.html",
+      "https://www.roc-taiwan.org/jp_ja/post/78.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "HKG",
+    "country_name": "Hong Kong SAR",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short",
+      "transit"
+    ],
+    "notes": "Japanese citizens can visit Hong Kong visa-free for up to 90 days.",
+    "sources": [
+      "https://www.immd.gov.hk/eng/services/visas/visit-transit/visit-visa-entry-permit.html"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "MEX",
+    "country_name": "Mexico",
+    "visa_policy": "visa_free",
+    "max_stay_days": 180,
+    "rolling_window": null,
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens can enter Mexico visa-free for up to 180 days for tourism/business.",
+    "sources": [
+      "https://embamex.sre.gob.mx/japon/index.php/visas",
+      "https://consulmex.sre.gob.mx/houston/index.php/visas"
+    ],
+    "last_checked": "2025-10-04"
+  },
+  {
+    "country_code": "BRA",
+    "country_name": "Brazil",
+    "visa_policy": "visa_free",
+    "max_stay_days": 90,
+    "rolling_window": "90/180",
+    "preclearance": [],
+    "purposes": [
+      "tourism",
+      "business_short"
+    ],
+    "notes": "Japanese citizens may enter Brazil visa-free for up to 90 days, extendable to 180 days per year.",
+    "sources": [
+      "https://www.gov.br/mre/pt-br",
+      "https://www.itamaraty.gov.br/en/consular-services/visas"
+    ],
+    "last_checked": "2025-10-04"
+  }
+]
