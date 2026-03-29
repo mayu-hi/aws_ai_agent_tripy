@@ -1,0 +1,16 @@
+[
+  { "name": "羽田空港", "lat": 35.5494, "lng": 139.7798, "category": "visited" },
+  { "name": "ヒースロー空港", "lat": 51.4700, "lng": -0.4543, "category": "visited" },
+  { "name": "The Zetter Hotel", "lat": 51.5200, "lng": -0.1000, "category": "visited" },
+  { "name": "ロンドン塔", "lat": 51.5081, "lng": -0.0759, "category": "visited", "description": "思い出のスポット" },
+  { "name": "タワーブリッジ", "lat": 51.5055, "lng": -0.0754, "category": "plan" },
+  { "name": "The George Inn", "lat": 51.5045, "lng": -0.0865, "category": "plan" },
+  { "name": "バッキンガム宮殿", "lat": 51.5014, "lng": -0.1419, "category": "plan" },
+  { "name": "Fortnum & Mason", "lat": 51.5074, "lng": -0.1372, "category": "plan" },
+  { "name": "大英博物館", "lat": 51.5194, "lng": -0.1270, "category": "plan" },
+  { "name": "コヴェントガーデン", "lat": 51.5118, "lng": -0.1226, "category": "plan" },
+  { "name": "ウエストエンド", "lat": 51.5130, "lng": -0.1347, "category": "plan" },
+  { "name": "ウェストミンスター寺院", "lat": 51.4994, "lng": -0.1273, "category": "plan" },
+  { "name": "ウェストミンスター", "lat": 51.4994, "lng": -0.1245, "category": "plan" },
+  { "name": "オックスフォード街", "lat": 51.5154, "lng": -0.1447, "category": "plan" }
+]
